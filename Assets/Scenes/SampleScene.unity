@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 204379529}
   - component: {fileID: 204379528}
   m_Layer: 0
-  m_Name: Cube (7)
+  m_Name: Wall 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 474188993}
   - component: {fileID: 474188992}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Wall 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 911814661}
   - component: {fileID: 911814660}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Wall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 1310919140}
   - component: {fileID: 1310919139}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1569757116}
   - component: {fileID: 1569757115}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -642,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8f72444f638d841b24b247658b452d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerNumber: 1
   m_Speed: 12
   m_TurnSpeed: 180
   maxSpeed: 30
@@ -726,7 +725,7 @@ GameObject:
   - component: {fileID: 1668916719}
   - component: {fileID: 1668916718}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +810,7 @@ GameObject:
   - component: {fileID: 1708835719}
   - component: {fileID: 1708835718}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Wall 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +895,7 @@ GameObject:
   - component: {fileID: 2111188298}
   - component: {fileID: 2111188297}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

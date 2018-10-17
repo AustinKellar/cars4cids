@@ -2,7 +2,6 @@
 
 public class TankMovement : MonoBehaviour
 {
-    public int m_PlayerNumber = 1;              // Used to identify which tank belongs to which player.  This is set by this tank's manager.
     public float m_Speed = 30f;                 // How fast the tank moves forward and back.
     public float m_TurnSpeed = 180f;            // How fast the tank turns in degrees per second.
     public float maxSpeed = 30f;
@@ -12,23 +11,11 @@ public class TankMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;              // Reference used to move the tank.
     private float m_MovementInputValue;         // The current value of the movement input.
     private float m_TurnInputValue;             // The current value of the turn input.
-    private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
 
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-    }
-
-
-    private void OnEnable()
-    {
-        // When the tank is turned on, make sure it's not kinematic.
-        m_Rigidbody.isKinematic = false;
-
-        // Also reset the input values.
-        m_MovementInputValue = 0f;
-        m_TurnInputValue = 0f;
     }
 
 
@@ -78,7 +65,8 @@ public class TankMovement : MonoBehaviour
                 Vector3 movement = transform.forward * m_Speed * Time.deltaTime;
                 m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
             }
-        } else if (m_MovementInputValue == -1)
+        } 
+        else if (m_MovementInputValue == -1)
         {
             if (m_Speed > maxSpeed)
             {
@@ -91,14 +79,12 @@ public class TankMovement : MonoBehaviour
                 Vector3 movement = transform.forward * m_Speed * Time.deltaTime;
                 m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
             }
-        } else
+        } 
+        else
         {
             Vector3 movement = transform.forward * m_Speed * Time.deltaTime;
             m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
         }
-      
-
-        // Apply this movement to the rigidbody's position.
     }
 
 
