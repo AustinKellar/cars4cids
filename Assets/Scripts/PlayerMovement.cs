@@ -7,20 +7,26 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed;
     public float turnSpeed;            
 
-    private Rigidbody _rigidbody;             
-    private float _movementInput;         
-    private float _turnInput;            
+    private Rigidbody _rigidbody;
+
+    private bool _moveForwardPressed
+    {
+        get { return Input.GetAxis("Vertical") == 1; }
+    }
+
+    private bool _moveBackwardPressed
+    {
+        get { return Input.GetAxis("Vertical") == -1; }
+    }
+
+    private float _turnInput 
+    {
+        get { return Input.GetAxis("Horizontal"); }
+    }
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-
-    private void Update()
-    {
-        _movementInput = Input.GetAxis("Vertical");
-        _turnInput = Input.GetAxis("Horizontal");
     }
 
     private void FixedUpdate()
@@ -32,11 +38,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (_movementInput == 1 && speed < maxSpeed) // if pressing forward, increase speed
+        if (_moveForwardPressed && speed < maxSpeed) // if pressing forward, increase speed
         {
             speed++;   
         }
-        else if (_movementInput == -1 && speed > minSpeed) // if pressing back, decrease speed
+
+        if (_moveBackwardPressed && speed > minSpeed) // if pressing back, decrease speed
         {
             speed--;
         }
