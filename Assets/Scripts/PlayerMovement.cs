@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TankMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float minSpeed;
