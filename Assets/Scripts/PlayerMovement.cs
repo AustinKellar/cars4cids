@@ -71,7 +71,10 @@ public class PlayerMovement : MonoBehaviour
             speed--;
         }
 
-        _rigidbody.velocity = transform.forward * speed;
+        Vector3 newVelocity = transform.forward * speed;
+        newVelocity.y = _rigidbody.velocity.y;
+
+        _rigidbody.velocity = newVelocity;
     }
 
 
