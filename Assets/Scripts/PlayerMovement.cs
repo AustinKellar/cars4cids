@@ -5,7 +5,10 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float minSpeed;
     public float maxSpeed;
-    public float turnSpeed;            
+    public float turnSpeed;
+
+    private Vector3 _checkpointPosition;
+    private Quaternion _checkpointRotation;
 
     private Rigidbody _rigidbody;
 
@@ -27,6 +30,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _checkpointPosition = transform.position;
+        _checkpointRotation = transform.rotation;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            // freeze physics while the car resets so that it doesn't turn immediately after resetting
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            ResetToCheckpoint();
+        }
     }
 
     private void FixedUpdate()
@@ -35,6 +50,14 @@ public class PlayerMovement : MonoBehaviour
         Turn();
     }
 
+    private void ResetToCheckpoint()
+    {
+        transform.position = _checkpointPosition;
+        transform.rotation = _checkpointRotation;
+        speed = 35f;
+        // resume physics
+        _rigidbody.constraints = RigidbodyConstraints.None;
+    }
 
     private void Move()
     {
