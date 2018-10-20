@@ -44,6 +44,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Checkpoint"))
+        {
+            CheckpointScript checkpoint = other.gameObject.GetComponent<CheckpointScript>();
+            _checkpointPosition = checkpoint.CheckpointPosition;
+            _checkpointRotation.eulerAngles = checkpoint.CheckpointRotation;
+        }
+    }
+
     private void FixedUpdate()
     {
         Move();
