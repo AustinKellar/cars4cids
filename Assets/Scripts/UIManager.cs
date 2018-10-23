@@ -23,11 +23,7 @@ public class UIManager : MonoBehaviour
 	
 	void Update ()
     {
-        Debug.Log("fuel: " + car.fuel + " maxFuel: " + car.maxFuel);
-        fuelGauge.rect.Set(fuelGauge.rect.x, 
-                           fuelGauge.rect.y, 
-                           (car.fuel / car.maxFuel) * _maxGaugeSize, 
-                           fuelGauge.rect.height);
+        fuelGauge.localScale = new Vector3(car.fuel / car.maxFuel, 1f, 1f);
         speedText.text = "Speed: " + car.speed;
     }
 
