@@ -43,7 +43,7 @@ public class TopDown_Camera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         zoom();
         HandleCamera();
 	}
