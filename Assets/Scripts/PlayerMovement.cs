@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public float minSpeed;
     public float maxSpeed;
     public float turnSpeed;
+    public float maxFuel;
+    public float fuel;
 
     private Vector3 _checkpointPosition;
     private Quaternion _checkpointRotation;
