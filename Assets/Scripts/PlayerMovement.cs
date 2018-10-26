@@ -1,20 +1,26 @@
 ﻿using UnityEngine;
-
 using LibPDBinding;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
     public float minSpeed;
     public float maxSpeed;
     public float turnSpeed;
     public float maxFuel;
     public float fuel;
 
+    private float _speed;
+    private float _startingSpeed;
+
     private Vector3 _checkpointPosition;
     private Quaternion _checkpointRotation;
 
     private Rigidbody _rigidbody;
+
+    public float speed // speed is a readonly property. Other scripts won't be able to change it directly
+    {
+        get { return _speed; }
+    }
 
     private bool _moveForwardPressed
     {
@@ -26,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         get { return Input.GetAxis("Vertical") == -1; }
     }
 
-    private float _turnInput 
+    private float _turnInput
     {
         get { return Input.GetAxis("Horizontal"); }
     }
@@ -36,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _checkpointPosition = transform.position;
         _checkpointRotation = transform.rotation;
+        _startingSpeed = 0;
+        _speed = _startingSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag.Equals("Wall"))
         {
             // freeze physics while the car resets so that it doesn't turn immediately after resetting
-            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             ResetToCheckpoint();
         }
     }
@@ -71,26 +78,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetToCheckpoint()
     {
+        _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         transform.position = _checkpointPosition;
         transform.rotation = _checkpointRotation;
-        speed = 35f;
-        // resume physics
+        _speed = _startingSpeed;
         _rigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void Move()
     {
-        if (_moveForwardPressed && speed < maxSpeed) // if pressing forward, increase speed
+        if (_speed < minSpeed) // if you are moving slower than the min speed, speed increases slowly to minSpeed
         {
-            speed++;   
+            _speed += 0.3f;
         }
 
-        if (_moveBackwardPressed && speed > minSpeed) // if pressing back, decrease speed
+        if (_moveForwardPressed && _speed < maxSpeed) // if pressing forward, increase speed
         {
-            speed--;
+            _speed++;
         }
 
-        Vector3 newVelocity = transform.forward * speed;
+        if (_moveBackwardPressed && _speed > minSpeed) // if pressing back, decrease speed
+        {
+            _speed--;
+        }
+
+        Vector3 newVelocity = transform.forward * _speed;
         newVelocity.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = newVelocity;
