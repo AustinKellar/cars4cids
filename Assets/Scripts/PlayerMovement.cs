@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using LibPDBinding;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
             _checkpointPosition = checkpoint.CheckpointPosition;
             _checkpointRotation.eulerAngles = checkpoint.CheckpointRotation;
         }
+    }
+
+    private void Update()
+    {
+        LibPD.SendFloat("velocity", speed);
     }
 
     private void FixedUpdate()
