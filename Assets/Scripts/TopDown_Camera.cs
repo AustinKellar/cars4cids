@@ -45,20 +45,7 @@ public class TopDown_Camera : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            var camera = Camera.allCameras[1];
-            var ray = camera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "Destroyable Wall")
-                {
-                    Destroy(GameObject.Find(hit.transform.name));
-                }
-            }
-        }
+        HandleNavigatorClicks();
     }
     void FixedUpdate () {
         zoom();
@@ -94,6 +81,24 @@ public class TopDown_Camera : MonoBehaviour {
         height = Mathf.Clamp(height, minZoom, maxZoom);
         distance -= Input.GetAxis("Mouse ScrollWheel") * zoomDistanceSpeed;
         distance = Mathf.Clamp(distance, minZoom, maxZoom);
+    }
+
+    void HandleNavigatorClicks()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            var camera = Camera.allCameras[1];
+            var ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "Destroyable Wall")
+                {
+                    Destroy(GameObject.Find(hit.transform.name));
+                }
+            }
+        }
     }
     #endregion
 }
