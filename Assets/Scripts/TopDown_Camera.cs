@@ -88,7 +88,7 @@ public class TopDown_Camera : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            var camera = Camera.allCameras[1];
+            var camera = Camera.allCameras[0];
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
