@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Checkpoint
+  - Destroyable Wall
   layers:
   - Default
   - TransparentFX
