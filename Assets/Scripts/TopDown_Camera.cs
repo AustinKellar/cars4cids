@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LibPDBinding;
 
 public class TopDown_Camera : MonoBehaviour {
     
@@ -95,6 +96,7 @@ public class TopDown_Camera : MonoBehaviour {
             {
                 if (hit.transform.tag == "Destroyable Wall")
                 {
+                    LibPD.SendBang("click");
                     Destroy(GameObject.Find(hit.transform.name));
                 }
             }
