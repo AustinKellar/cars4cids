@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("Destroyable Wall"))
         {
             // freeze physics while the car resets so that it doesn't turn immediately after resetting
             ResetToCheckpoint();
